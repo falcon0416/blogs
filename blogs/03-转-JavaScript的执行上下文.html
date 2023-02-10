@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>JavaScript的执行上下文，理解JavaScript的作用域链，JavaScript中的this | GaoChuang&#39;s Blog</title>
+    <meta name="generator" content="VuePress 1.9.8">
+    
+    <meta name="description" content="生活~工作~学习">
+    
+    <link rel="preload" href="./assets/css/0.styles.d1119bf0.css" as="style"><link rel="preload" href="./assets/js/app.00271e18.js" as="script"><link rel="preload" href="./assets/js/3.e025ddc1.js" as="script"><link rel="preload" href="./assets/js/1.8c84e2ea.js" as="script"><link rel="preload" href="./assets/js/13.f663f57b.js" as="script"><link rel="prefetch" href="./assets/js/10.bf860e6a.js"><link rel="prefetch" href="./assets/js/100.ab7a8330.js"><link rel="prefetch" href="./assets/js/101.00320981.js"><link rel="prefetch" href="./assets/js/102.70ddbe59.js"><link rel="prefetch" href="./assets/js/103.9ad14eb2.js"><link rel="prefetch" href="./assets/js/104.d3e0f9b3.js"><link rel="prefetch" href="./assets/js/105.259feaef.js"><link rel="prefetch" href="./assets/js/106.97afa992.js"><link rel="prefetch" href="./assets/js/107.61701314.js"><link rel="prefetch" href="./assets/js/108.82a7a751.js"><link rel="prefetch" href="./assets/js/109.f57f0d9b.js"><link rel="prefetch" href="./assets/js/11.f95a9d10.js"><link rel="prefetch" href="./assets/js/110.b1d57ab2.js"><link rel="prefetch" href="./assets/js/111.77fdb012.js"><link rel="prefetch" href="./assets/js/112.2a4f5ee9.js"><link rel="prefetch" href="./assets/js/113.4753f084.js"><link rel="prefetch" href="./assets/js/114.0c42e198.js"><link rel="prefetch" href="./assets/js/115.50750b55.js"><link rel="prefetch" href="./assets/js/116.895892aa.js"><link rel="prefetch" href="./assets/js/117.82c9c77d.js"><link rel="prefetch" href="./assets/js/118.671ecede.js"><link rel="prefetch" href="./assets/js/119.6ca02e49.js"><link rel="prefetch" href="./assets/js/12.9f5b8062.js"><link rel="prefetch" href="./assets/js/120.2938e91b.js"><link rel="prefetch" href="./assets/js/121.0f19a6fc.js"><link rel="prefetch" href="./assets/js/122.9db11c2b.js"><link rel="prefetch" href="./assets/js/123.c3023ec0.js"><link rel="prefetch" href="./assets/js/124.e3557738.js"><link rel="prefetch" href="./assets/js/125.662db4df.js"><link rel="prefetch" href="./assets/js/126.4380dcd1.js"><link rel="prefetch" href="./assets/js/14.b9edaa95.js"><link rel="prefetch" href="./assets/js/15.63ae603d.js"><link rel="prefetch" href="./assets/js/16.1a48cf59.js"><link rel="prefetch" href="./assets/js/17.7a24ea4f.js"><link rel="prefetch" href="./assets/js/18.af30b5a3.js"><link rel="prefetch" href="./assets/js/19.ff55d738.js"><link rel="prefetch" href="./assets/js/20.99fbb3b5.js"><link rel="prefetch" href="./assets/js/21.c7746845.js"><link rel="prefetch" href="./assets/js/22.f140918a.js"><link rel="prefetch" href="./assets/js/23.82510b20.js"><link rel="prefetch" href="./assets/js/24.07db449e.js"><link rel="prefetch" href="./assets/js/25.4b9ceeea.js"><link rel="prefetch" href="./assets/js/26.dd3a0c2a.js"><link rel="prefetch" href="./assets/js/27.9bd6912b.js"><link rel="prefetch" href="./assets/js/28.4f5ddfe5.js"><link rel="prefetch" href="./assets/js/29.2c093b1b.js"><link rel="prefetch" href="./assets/js/30.a0881533.js"><link rel="prefetch" href="./assets/js/31.2bda685a.js"><link rel="prefetch" href="./assets/js/32.cc0c407e.js"><link rel="prefetch" href="./assets/js/33.94e0335d.js"><link rel="prefetch" href="./assets/js/34.59622294.js"><link rel="prefetch" href="./assets/js/35.b222eb0a.js"><link rel="prefetch" href="./assets/js/36.288e8775.js"><link rel="prefetch" href="./assets/js/37.f2242e16.js"><link rel="prefetch" href="./assets/js/38.97130069.js"><link rel="prefetch" href="./assets/js/39.faf23f8b.js"><link rel="prefetch" href="./assets/js/4.b75a55a3.js"><link rel="prefetch" href="./assets/js/40.c88e0224.js"><link rel="prefetch" href="./assets/js/41.99eb0ef2.js"><link rel="prefetch" href="./assets/js/42.1d2e7d9d.js"><link rel="prefetch" href="./assets/js/43.389e7aa5.js"><link rel="prefetch" href="./assets/js/44.080b8fb6.js"><link rel="prefetch" href="./assets/js/45.1ea1ac34.js"><link rel="prefetch" href="./assets/js/46.e11429ab.js"><link rel="prefetch" href="./assets/js/47.5b42ddb3.js"><link rel="prefetch" href="./assets/js/48.7b1dc1f5.js"><link rel="prefetch" href="./assets/js/49.631080a5.js"><link rel="prefetch" href="./assets/js/5.c6bc459b.js"><link rel="prefetch" href="./assets/js/50.e8f05b39.js"><link rel="prefetch" href="./assets/js/51.d8989603.js"><link rel="prefetch" href="./assets/js/52.0566f474.js"><link rel="prefetch" href="./assets/js/53.e4a482cd.js"><link rel="prefetch" href="./assets/js/54.381725d5.js"><link rel="prefetch" href="./assets/js/55.b2bdfe42.js"><link rel="prefetch" href="./assets/js/56.05147c33.js"><link rel="prefetch" href="./assets/js/57.b3e387c6.js"><link rel="prefetch" href="./assets/js/58.639a46a3.js"><link rel="prefetch" href="./assets/js/59.966881b8.js"><link rel="prefetch" href="./assets/js/6.6705dcce.js"><link rel="prefetch" href="./assets/js/60.a6247a06.js"><link rel="prefetch" href="./assets/js/61.149299f5.js"><link rel="prefetch" href="./assets/js/62.c4d402e7.js"><link rel="prefetch" href="./assets/js/63.366a8cb2.js"><link rel="prefetch" href="./assets/js/64.d7018b57.js"><link rel="prefetch" href="./assets/js/65.35976f23.js"><link rel="prefetch" href="./assets/js/66.ae27e87d.js"><link rel="prefetch" href="./assets/js/67.f44ee3fa.js"><link rel="prefetch" href="./assets/js/68.710ddee6.js"><link rel="prefetch" href="./assets/js/69.d9cff9ba.js"><link rel="prefetch" href="./assets/js/7.2c7fccd5.js"><link rel="prefetch" href="./assets/js/70.78b42926.js"><link rel="prefetch" href="./assets/js/71.6ee5fa52.js"><link rel="prefetch" href="./assets/js/72.007b64aa.js"><link rel="prefetch" href="./assets/js/73.afada831.js"><link rel="prefetch" href="./assets/js/74.d2a72269.js"><link rel="prefetch" href="./assets/js/75.aaf3aa1d.js"><link rel="prefetch" href="./assets/js/76.2d9c74ca.js"><link rel="prefetch" href="./assets/js/77.2abe2d6b.js"><link rel="prefetch" href="./assets/js/78.7bca86fb.js"><link rel="prefetch" href="./assets/js/79.d6ef3a32.js"><link rel="prefetch" href="./assets/js/8.640372a3.js"><link rel="prefetch" href="./assets/js/80.0545f412.js"><link rel="prefetch" href="./assets/js/81.31d17c13.js"><link rel="prefetch" href="./assets/js/82.0810a7f2.js"><link rel="prefetch" href="./assets/js/83.1b3aa9f8.js"><link rel="prefetch" href="./assets/js/84.e78ecc1b.js"><link rel="prefetch" href="./assets/js/85.b8a08fcc.js"><link rel="prefetch" href="./assets/js/86.c10a509c.js"><link rel="prefetch" href="./assets/js/87.949aa04d.js"><link rel="prefetch" href="./assets/js/88.5811607d.js"><link rel="prefetch" href="./assets/js/89.44e05359.js"><link rel="prefetch" href="./assets/js/9.2ea9725a.js"><link rel="prefetch" href="./assets/js/90.4571f21d.js"><link rel="prefetch" href="./assets/js/91.4cd366e1.js"><link rel="prefetch" href="./assets/js/92.c86894bf.js"><link rel="prefetch" href="./assets/js/93.85f96868.js"><link rel="prefetch" href="./assets/js/94.c9ac5870.js"><link rel="prefetch" href="./assets/js/95.faac292f.js"><link rel="prefetch" href="./assets/js/96.628bfc84.js"><link rel="prefetch" href="./assets/js/97.0bfcc0a5.js"><link rel="prefetch" href="./assets/js/98.b0cb8482.js"><link rel="prefetch" href="./assets/js/99.4c99a285.js">
+    <link rel="stylesheet" href="./assets/css/0.styles.d1119bf0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>GaoChuang's Blog</h3> <p class="description" data-v-59e6cb88>生活~工作~学习</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>GaoChuang</span>
+          
+        <span data-v-59e6cb88>2019 - </span>
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/./" class="home-link router-link-active"><img src="./avatar.jpg" alt="GaoChuang's Blog" class="logo"> <span class="site-name">GaoChuang's Blog</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="./avatar.jpg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    GaoChuang
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>116</h3> <h6 data-v-1fad0c41>Articles</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>74</h3> <h6 data-v-1fad0c41>Tags</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <!----> <!----> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>JavaScript的执行上下文，理解JavaScript的作用域链，JavaScript中的this</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>GaoChuang</span>
+          
+        <span data-v-59e6cb88>2019 - </span>
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page" style="padding-right:0;"><section style="display:;"><div class="page-title"><h1 class="title">JavaScript的执行上下文，理解JavaScript的作用域链，JavaScript中的this</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>GaoChuang</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>1/15/2020</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>js</span></i></div></div> <div class="theme-reco-content content__default"><blockquote><p>学习了一篇 js 偏底层基础 的文章：JavaScript 的执行上下文 Execution context</p> <p>我将三篇文章放在一起 最后加了一些自己的总结 和 函数表达式的理解</p> <p>原文地址：</p> <p><a href="https://www.cnblogs.com/wilber2013/p/4909430.html#_nav_0" target="_blank" rel="noopener noreferrer">JavaScript 的执行上下文<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.cnblogs.com/wilber2013/p/4909459.html" target="_blank" rel="noopener noreferrer">理解 JavaScript 的作用域链<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.cnblogs.com/wilber2013/p/4909505.html#_nav_3" target="_blank" rel="noopener noreferrer">JavaScript 中的 this<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <h1 id="javascript-的执行上下文"><a href="#javascript-的执行上下文" class="header-anchor">#</a> JavaScript 的执行上下文</h1> <p>在 JavaScript 的运行过程中，经常会遇到一些&quot;奇怪&quot;的行为，不理解为什么 JavaScript 会这么工作。</p> <p>这时候可能就需要了解一下 JavaScript 执行过程中的相关内容了。</p> <h2 id="执行上下文"><a href="#执行上下文" class="header-anchor">#</a> 执行上下文</h2> <p>在 JavaScript 中有三种代码运行环境：</p> <ul><li>Global Code
+<ul><li>JavaScript 代码开始运行的默认环境</li></ul></li> <li>Function Code
+<ul><li>代码进入一个 JavaScript 函数</li></ul></li> <li>Eval Code
+<ul><li>使用 eval()执行代码</li></ul></li></ul> <p>为了表示不同的运行环境，JavaScript 中有一个<strong>执行上下文（Execution context，EC）<strong>的概念。也就是说，当 JavaScript 代码执行的时候，会进入不同的执行上下文，这些执行上下文就构成了一个</strong>执行上下文栈（Execution context stack，ECS）</strong>。</p> <p>例如对如下面的 JavaScript 代码：</p> <div class="language- extra-class"><pre class="language-text"><code>var a = &quot;global var&quot;;
+
+function foo(){
+    console.log(a);
+}
+
+function outerFunc(){
+    var b = &quot;var in outerFunc&quot;;
+    console.log(b);
+
+    function innerFunc(){
+        var c = &quot;var in innerFunc&quot;;
+        console.log(c);
+        foo();
+    }
+
+    innerFunc();
+}
+
+
+outerFunc()
+</code></pre></div><p>代码首先进入 Global Execution Context，然后依次进入 outerFunc，innerFunc 和 foo 的执行上下文，执行上下文栈就可以表示为：</p> <p><img src="https://s2.loli.net/2023/01/13/x8ESa2bl3QDycL1.png" alt="img"></p> <p>当 JavaScript 代码执行的时候，第一个进入的总是默认的 Global Execution Context，所以说它总是在 ECS 的最底部。</p> <p>对于每个 Execution Context 都有三个重要的属性，变量对象（Variable object，VO），作用域链（Scope chain）和 this。这三个属性跟代码运行的行为有很重要的关系，下面会一一介绍。</p> <p>当然，除了这三个属性之外，根据实现的需要，Execution Context 还可以有一些附加属性。</p> <p><img src="https://s2.loli.net/2023/01/13/pYxDIs58lHcJzO7.png" alt="img"></p> <h2 id="vo-和-ao"><a href="#vo-和-ao" class="header-anchor">#</a> VO 和 AO</h2> <p>从上面看到，在 Execution Context 中，会保存变量对象（Variable object，VO），下面就看看变量对象是什么。</p> <h3 id="变量对象-variable-object"><a href="#变量对象-variable-object" class="header-anchor">#</a> 变量对象（Variable object）</h3> <p>变量对象是与执行上下文相关的数据作用域。它是一个与上下文相关的特殊对象，其中存储了在上下文中定义的变量和函数声明。也就是说，一般 VO 中会包含以下信息：</p> <ul><li>变量 (var, Variable Declaration);</li> <li>函数声明 (Function Declaration, FD);</li> <li>函数的形参</li></ul> <p>当 JavaScript 代码运行中，如果试图寻找一个变量的时候，就会首先查找 VO。对于前面例子中的代码，Global Execution Context 中的 VO 就可以表示如下：</p> <p><img src="https://s2.loli.net/2023/01/13/Aq9PveDLEjmzxMN.png" alt="img"></p> <p>**注意，**假如上面的例子代码中有下面两个语句，Global VO 仍将不变。</p> <div class="language- extra-class"><pre class="language-text"><code>(function bar(){}) // function expression, FE
+baz = &quot;property of global object&quot;
+</code></pre></div><p>也就是说，对于 VO，是有下面两种特殊情况的：</p> <ul><li>函数表达式（与函数声明相对）不包含在 VO 之中</li> <li>没有使用 var 声明的变量（这种变量是，&quot;全局&quot;的声明方式，只是给 Global 添加了一个属性，并不在 VO 中）</li></ul> <h3 id="活动对象-activation-object"><a href="#活动对象-activation-object" class="header-anchor">#</a> 活动对象（Activation object）</h3> <p>只有全局上下文的变量对象允许通过 VO 的属性名称间接访问；在函数执行上下文中，VO 是不能直接访问的，此时由激活对象(Activation Object,缩写为 AO)扮演 VO 的角色。激活对象 是在进入函数上下文时刻被创建的，它通过函数的 arguments 属性初始化。</p> <p>Arguments Objects 是函数上下文里的激活对象 AO 中的内部对象，它包括下列属性：</p> <ol><li>callee：指向当前函数的引用</li> <li>length： 真正传递的参数的个数</li> <li>properties-indexes：就是函数的参数值(按参数列表从左到右排列)</li></ol> <p>对于 VO 和 AO 的关系可以理解为，VO 在不同的 Execution Context 中会有不同的表现：当在 Global Execution Context 中，可以直接使用 VO；但是，在函数 Execution Context 中，AO 就会被创建。</p> <p><img src="https://images2015.cnblogs.com/blog/593627/201510/593627-20151025201155177-724394618.png" alt="img"></p> <p>当上面的例子开始执行 outerFunc 的时候，就会有一个 outerFunc 的 AO 被创建：</p> <p><img src="https://s2.loli.net/2023/01/13/3iIzJmXVdKgDeq4.png" alt="img"></p> <p>通过上面的介绍，我们现在了解了 VO 和 AO 是什么，以及他们之间的关系了。下面就需要看看 JavaScript 解释器是怎么执行一段代码，以及设置 VO 和 AO 了。</p> <h2 id="细看-execution-context"><a href="#细看-execution-context" class="header-anchor">#</a> 细看 Execution Context</h2> <p>当一段 JavaScript 代码执行的时候，JavaScript 解释器会创建 Execution Context，其实这里会有两个阶段：</p> <ul><li>创建阶段（当函数被调用，但是开始执行函数内部代码之前）
+<ul><li>创建 Scope chain</li> <li>创建 VO/AO（variables, functions and arguments）</li> <li>设置 this 的值</li></ul></li> <li>激活/代码执行阶段
+<ul><li>设置变量的值、函数的引用，然后解释/执行代码</li></ul></li></ul> <p>这里想要详细介绍一下&quot;创建 VO/AO&quot;中的一些细节，因为这些内容将直接影响代码运行的行为。</p> <p>对于&quot;创建 VO/AO&quot;这一步，JavaScript 解释器主要做了下面的事情：</p> <ul><li>根据函数的参数，创建并初始化 arguments object</li> <li>扫描函数内部代码，查找函数声明（Function declaration）
+<ul><li>对于所有找到的函数声明，将函数名和函数引用存入 VO/AO 中</li> <li><strong>如果 VO/AO 中已经有同名的函数，那么就进行覆盖</strong></li></ul></li> <li>扫描函数内部代码，查找变量声明（Variable declaration）
+<ul><li>对于所有找到的变量声明，将变量名存入 VO/AO 中，并初始化为&quot;undefined&quot;</li> <li>如果变量名称跟已经声明的形式参数或函数相同，则变量声明不会干扰已经存在的这类属性</li></ul></li></ul> <p>看下面的例子：</p> <div class="language- extra-class"><pre class="language-text"><code>function foo(i) {
+    var a = 'hello';
+    var b = function privateB() {
+
+    };
+    function c() {
+
+    }
+}
+
+foo(22);
+</code></pre></div><p>对于上面的代码，在&quot;创建阶段&quot;，可以得到下面的 Execution Context object：</p> <div class="language- extra-class"><pre class="language-text"><code>fooExecutionContext = {
+    scopeChain: { ... },
+    variableObject: {
+        arguments: {
+            0: 22,
+            length: 1
+        },
+        i: 22,
+        c: pointer to function c()
+        a: undefined,
+        b: undefined
+    },
+    this: { ... }
+}
+</code></pre></div><p>在&quot;激活/代码执行阶段&quot;，Execution Context object 就被更新为：</p> <div class="language- extra-class"><pre class="language-text"><code>fooExecutionContext = {
+    scopeChain: { ... },
+    variableObject: {
+        arguments: {
+            0: 22,
+            length: 1
+        },
+        i: 22,
+        c: pointer to function c()
+        a: 'hello',
+        b: pointer to function privateB()
+    },
+    this: { ... }
+}
+</code></pre></div><h2 id="例子分析"><a href="#例子分析" class="header-anchor">#</a> 例子分析</h2> <p>前面介绍了 Execution Context，VO/AO 等这么多的理论知识，当然是为了方便我们去分析代码中的一些行为。这里，就通过几个简单的例子，结合上面的概念来分析结果。</p> <h3 id="example-1"><a href="#example-1" class="header-anchor">#</a> Example 1</h3> <p>首先看第一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>(function(){
+    console.log(bar);
+    console.log(baz);
+
+    var bar = 20;
+
+    function baz(){
+        console.log(&quot;baz&quot;);
+    }
+
+})()
+</code></pre></div><p>在 Chrome 中运行代码运行后将输出：</p> <p><img src="https://images2015.cnblogs.com/blog/593627/201510/593627-20151025201157161-1227329780.png" alt="img"></p> <p>代码解释：匿名函数会首先进入&quot;创建结果&quot;，JavaScript 解释器会创建一个&quot;Function Execution Context&quot;，然后创建 Scope chain，VO/AO 和 this。根据前面的介绍，解释器会扫描函数和变量声明，如下的 AO 会被创建：</p> <p><img src="https://s2.loli.net/2023/01/13/WJOV6it78FUuBvw.png" alt="img"></p> <p>所以，对于 bar，我们会得到&quot;undefined&quot;这个输出，表现的行为就是，我们在声明一个变量之前就访问了这个变量。这个就是 JavaScript 中&quot;Hoisting&quot;。</p> <h3 id="example-2"><a href="#example-2" class="header-anchor">#</a> Example 2</h3> <p>接着上面的例子，进行一些修改：</p> <div class="language- extra-class"><pre class="language-text"><code>(function(){
+    console.log(bar);
+    console.log(baz);
+
+    bar = 20;
+    console.log(window.bar);
+    console.log(bar);
+
+    function baz(){
+        console.log(&quot;baz&quot;);
+    }
+
+})()
+</code></pre></div><p>运行这段代码会得到&quot;bar is not defined(…)&quot;错误。当代码执行到&quot;console.log(bar);&quot;的时候，会去 AO 中查找&quot;bar&quot;。但是，根据前面的解释，函数中的&quot;bar&quot;并没有通过 var 关键字声明，所有不会被存放在 AO 中，也就有了这个错误。</p> <p>注释掉&quot;console.log(bar);&quot;，再次运行代码，可以得到下面结果。&quot;bar&quot;在&quot;激活/代码执行阶段&quot;被创建。</p> <p><img src="https://images2015.cnblogs.com/blog/593627/201510/593627-20151025201158911-154792588.png" alt="img"></p> <h3 id="example-3"><a href="#example-3" class="header-anchor">#</a> Example 3</h3> <p>现在来看最后一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>(function(){
+    console.log(foo);
+    console.log(bar);
+    console.log(baz);
+
+    var foo = function(){};
+
+    function bar(){
+        console.log(&quot;bar&quot;);
+    }
+
+    var bar = 20;
+    console.log(bar);
+
+    function baz(){
+        console.log(&quot;baz&quot;);
+    }
+
+})()
+</code></pre></div><p>代码的运行结果为：</p> <p>代码中，最&quot;奇怪&quot;的地方应该就是&quot;bar&quot;的输出了，第一次是一个函数，第二次是&quot;20&quot;。</p> <p>其实也很好解释，回到前面对&quot;创建 VO/AO&quot;的介绍，在创建 VO/AO 过程中，解释器会先扫描函数声明，然后&quot;foo: <code>&lt;function&gt;</code>&quot;就被保存在了 AO 中；但解释器扫描变量声明的时候，虽然发现&quot;var bar = 20;&quot;，但是因为&quot;foo&quot;在 AO 中已经存在，所以就没有任何操作了。</p> <p>但是，当代码执行到第二句&quot;console.log(bar);&quot;的时候，&quot;激活/代码执行阶段&quot;已经把 AO 中的&quot;bar&quot;重新设置了。</p> <blockquote><p>下面是自己理解的 函数内部上下文执行流程图</p></blockquote> <p><img src="https://s2.loli.net/2023/01/13/EJQujlLwZq8R321.png" alt="JavaScript的执行上下文（函数内部的执行流程Execution Context）"></p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>本文介绍了 JavaScript 中的执行上下文（Execution Context），以及 VO/AO 等概念，最后通过几个例子展示了这几个概念对我们了解 JavaScript 代码运行的重要性。</p> <p>通过对 VO/AO 在&quot;创建阶段&quot;的具体细节，如何扫描函数声明和变量声明，就可以对 JavaScript 中的&quot;Hoisting&quot;有清晰的认识。所以说，了解 JavaScript 解释器的行为，以及相关的概念，对理解 JavaScript 代码的行为是很有帮助的。</p> <p>后面会对 Execution Context 中的 Scope chain 和 this 进行介绍。</p> <h1 id="理解-javascript-的作用域链"><a href="#理解-javascript-的作用域链" class="header-anchor">#</a> 理解 JavaScript 的作用域链</h1> <p>上一篇文章中介绍了 Execution Context 中的三个重要部分：VO/AO，scope chain 和 this，并详细的介绍了 VO/AO 在 JavaScript 代码执行中的表现。</p> <p>本文就看看 Execution Context 中的 scope chain。</p> <h2 id="作用域"><a href="#作用域" class="header-anchor">#</a> 作用域</h2> <p>开始介绍作用域链之前，先看看 JavaScript 中的作用域（scope）。在很多语言中（C++，C#，Java），作用域都是通过代码块（由{}包起来的代码）来决定的，<strong>但是，在 JavaScript 作用域是跟函数相关的，也可以说成是 function-based。</strong></p> <p>例如，当 for 循环这个代码块结束后，依然可以访问变量&quot;i&quot;。</p> <div class="language- extra-class"><pre class="language-text"><code>for(var i = 0; i &lt; 3; i++){
+    console.log(i);
+}
+
+console.log(i); //3
+</code></pre></div><p>对于作用域，又可以分为全局作用域（Global scope）和局部作用域（Local scpoe）。</p> <p><strong>全局作用域</strong>中的对象可以在代码的任何地方访问，一般来说，下面情况的对象会在全局作用域中：</p> <ul><li>最外层函数和在最外层函数外面定义的变量</li> <li>没有通过关键字&quot;var&quot;声明的变量</li> <li>浏览器中，window 对象的属性</li></ul> <p><strong>局部作用域</strong>又被称为函数作用域（Function scope），所有的变量和函数只能在作用域内部使用。</p> <div class="language- extra-class"><pre class="language-text"><code>var foo = 1;
+window.bar = 2;
+
+function baz(){
+    a = 3;
+    var b = 4;
+}
+// Global scope: foo, bar, baz, a
+// Local scope: b
+</code></pre></div><h2 id="作用域链"><a href="#作用域链" class="header-anchor">#</a> 作用域链</h2> <p>通过前面一篇文章了解到，每一个 Execution Context 中都有一个 VO，用来存放变量，函数和参数等信息。</p> <p>在 JavaScript 代码运行中，所有用到的变量都需要去当前 AO/VO 中查找，当找不到的时候，就会继续查找上层 Execution Context 中的 AO/VO。这样一级级向上查找的过程，就是所有 Execution Context 中的 AO/VO 组成了一个作用域链。</p> <p>所以说，<strong>作用域链</strong>与一个执行上下文相关，是内部上下文所有变量对象（包括父变量对象）的列表，用于变量查询。</p> <div class="language- extra-class"><pre class="language-text"><code>Scope = VO/AO + All Parent VO/AOs
+</code></pre></div><p>看一个例子：</p> <div class="language- extra-class"><pre class="language-text"><code>var x = 10;
+
+function foo() {
+    var y = 20;
+
+    function bar() {
+        var z = 30;
+
+        console.log(x + y + z);
+    };
+
+    bar()
+};
+
+foo();
+</code></pre></div><p>上面代码的输出结果为&quot;60&quot;，函数 bar 可以直接访问&quot;z&quot;，然后通过作用域链访问上层的&quot;x&quot;和&quot;y&quot;。</p> <p><img src="https://s2.loli.net/2023/01/13/4GWK2pgfCJLjS7U.png" alt="img"></p> <ul><li>绿色箭头指向 VO/AO</li> <li>蓝色箭头指向 scope chain（VO/AO + All Parent VO/AOs）</li></ul> <p>再看一个比较典型的例子：</p> <div class="language- extra-class"><pre class="language-text"><code>var data = [];
+for(var i = 0 ; i &lt; 3; i++){
+    data[i]=function() {
+        console.log(i);
+    }
+}
+
+data[0]();// 3
+data[1]();// 3
+data[2]();// 3
+</code></pre></div><p>第一感觉（错觉）这段代码会输出&quot;0，1，2&quot;。但是根据前面的介绍，变量&quot;i&quot;是存放在&quot;Global VO&quot;中的变量，循环结束后&quot;i&quot;的值就被设置为 3，所以代码最后的三次函数调用访问的是相同的&quot;Global VO&quot;中已经被更新的&quot;i&quot;。</p> <h2 id="结合作用域链看闭包"><a href="#结合作用域链看闭包" class="header-anchor">#</a> 结合作用域链看闭包</h2> <p>在 JavaScript 中，闭包跟作用域链有紧密的关系。相信大家对下面的闭包例子一定非常熟悉，代码中通过闭包实现了一个简单的计数器。</p> <div class="language- extra-class"><pre class="language-text"><code>function counter() {
+    var x = 0;
+
+    return {
+        increase: function increase() { return ++x; },
+        decrease: function decrease() { return --x; }
+    };
+}
+
+var ctor = counter();
+
+console.log(ctor.increase());
+console.log(ctor.decrease());
+</code></pre></div><p>下面我们就通过 Execution Context 和 scope chain 来看看在上面闭包代码执行中到底做了哪些事情。</p> <p>\1. 当代码进入 Global Context 后，会创建 Global VO</p> <p><img src="https://s2.loli.net/2023/01/13/kG1t9AVEXPhivCg.png" alt="img"></p> <ul><li>绿色箭头指向 VO/AO</li> <li>蓝色箭头指向 scope chain（VO/AO + All Parent VO/AOs）</li></ul> <p>\2. 当代码执行到&quot;var cter = counter();&quot;语句的时候，进入 counter Execution Context；根据上一篇文章的介绍，这里会创建 counter AO，并设置 counter Execution Context 的 scope chain</p> <p><img src="https://s2.loli.net/2023/01/13/ZrsJ4g6pHXG3uBF.png" alt="img"></p> <p>\3. 当 counter 函数执行的最后，并退出的时候，Global VO 中的 ctor 就会被设置；这里需要注意的是，虽然 counter Execution Context 退出了执行上下文栈，但是因为 ctor 中的成员仍然引用 counter AO（因为 counter AO 是 increase 和 decrease 函数的 parent scope），所以 counter AO 依然在 Scope 中。</p> <p><img src="https://s2.loli.net/2023/01/13/mFMpR6gDWoE5a3c.png" alt="img"></p> <p>\4. 当执行&quot;ctor.increase()&quot;代码的时候，代码将进入 ctor.increase Execution Context，并为该执行上下文创建 VO/AO，scope chain 和设置 this；这时，ctor.increase AO 将指向 counter AO。</p> <p><img src="https://s2.loli.net/2023/01/13/53RuG7NtsSfjLZ4.png" alt="img"></p> <ul><li>绿色箭头指向 VO/AO</li> <li>蓝色箭头指向 scope chain（VO/AO + All Parent VO/AOs）</li> <li>红色箭头指向 this</li> <li>黑色箭头指向 parent VO/AO</li></ul> <p>相信看到这些，一定会对 JavaScript 闭包有了比较清晰的认识，也了解为什么 counter Execution Context 退出了执行上下文栈，但是 counter AO 没有销毁，可以继续访问。</p> <h2 id="二维作用域链查找"><a href="#二维作用域链查找" class="header-anchor">#</a> 二维作用域链查找</h2> <p>通过上面了解到，作用域链（scope chain）的主要作用就是用来进行变量查找。但是，在 JavaScript 中还有原型链（prototype chain）的概念。</p> <p>由于作用域链和原型链的相互作用，这样就形成了一个二维的查找。</p> <p>对于这个二维查找可以总结为：<strong>当代码需要查找一个属性（property）或者描述符（identifier）的时候，首先会通过作用域链（scope chain）来查找相关的对象；一旦对象被找到，就会根据对象的原型链（prototype chain）来查找属性（property）</strong>。</p> <p>下面通过一个例子来看看这个二维查找：</p> <div class="language- extra-class"><pre class="language-text"><code>var foo = {}
+
+function baz() {
+
+    Object.prototype.a = 'Set foo.a from prototype';
+
+    return function inner() {
+        console.log(foo.a);
+    }
+
+}
+
+baz()();
+// Set bar.a from prototype
+</code></pre></div><p>对于这个例子，可以通过下图进行解释，代码首先通过作用域链（scope chain）查找&quot;foo&quot;，最终在 Global context 中找到；然后因为&quot;foo&quot;中没有找到属性&quot;a&quot;，将继续沿着原型链（prototype chain）查找属性&quot;a&quot;。</p> <p><img src="https://s2.loli.net/2023/01/13/VfyoDZcaGinH4dC.png" alt="img"></p> <ul><li>蓝色箭头表示作用域链查找</li> <li>橘色箭头表示原型链查找</li></ul> <h2 id="总结-2"><a href="#总结-2" class="header-anchor">#</a> 总结</h2> <p>本文介绍了 JavaScript 中的作用域以及作用域链，通过作用域链分析了闭包的执行过程，进一步认识了 JavaScript 的闭包。</p> <p>同时，结合原型链，演示了 JavaScript 中的描述符和属性的查找。</p> <p>下一篇我们就看看 Execution Context 中的 this 属性。</p> <h1 id="javascript-中的-this"><a href="#javascript-中的-this" class="header-anchor">#</a> JavaScript 中的 this</h1> <p>前面两篇文章介绍了 JavaScript 执行上下文中两个重要属性：VO/AO 和 scope chain。本文就来看看执行上下文中的 this。</p> <p>首先看看下面两个对 this 的概括：</p> <ul><li><strong>this 是执行上下文（Execution Context）的一个重要属性</strong>，是一个与执行上下文相关的特殊对象。因此，它可以叫作上下文对象（也就是用来指明执行上下文是在哪个上下文中被触发的对象）。</li> <li><strong>this 不是变量对象（Variable Object）的一个属性</strong>，所以跟变量不同，this 从不会参与到标识符解析过程。也就是说，在代码中当访问 this 的时候，它的值是直接从执行上下文中获取的，并不需要任何作用域链查找。this 的值只在进入上下文的时候进行一次确定。</li></ul> <p>关于 this 最困惑的应该是，同一个函数，当在不同的上下文进行调用的时候，this 的值就可能会不同。也就是说，this 的值是通过函数调用表达式（也就是函数被调用的方式）的 caller 所提供的。</p> <p>下面就看看在不同场景中，this 的值。</p> <h2 id="全局上下文"><a href="#全局上下文" class="header-anchor">#</a> 全局上下文</h2> <p>在全局上下文（Global Context）中，this 总是 global object，在浏览器中就是 window 对象。</p> <div class="language- extra-class"><pre class="language-text"><code>console.log(this === window);
+
+this.name = &quot;Will&quot;;
+this.age = 28;
+this.getInfo = function(){
+    console.log(this.name + &quot; is &quot; + this.age + &quot; years old&quot;);
+};
+window.getInfo();
+// true
+// Will is 28 years old
+</code></pre></div><h2 id="函数上下文"><a href="#函数上下文" class="header-anchor">#</a> 函数上下文</h2> <p>在一个函数中，this 的情况就比较多了，this 的值直接受函数调用方式的影响。</p> <h3 id="invoke-function-as-function"><a href="#invoke-function-as-function" class="header-anchor">#</a> Invoke function as Function</h3> <p>当通过正常的方式调用一个函数的时候，this 的值就会被设置为 global object（浏览器中的 window 对象）。</p> <p>但是，当使用&quot;strict mode&quot;执行下面代码的时候，this 就会被设置为&quot;undefined&quot;。</p> <div class="language- extra-class"><pre class="language-text"><code>function gFunc(){
+    return this;
+}
+
+console.log(gFunc());
+console.log(this === window.gFunc());
+// window
+// true
+</code></pre></div><h3 id="invoke-function-as-method"><a href="#invoke-function-as-method" class="header-anchor">#</a> Invoke function as Method</h3> <p>当函数作为一个对象方法来执行的时候，this 的值就是该方法所属的对象。</p> <p>在下面的例子中，创建了一个 obj 对象，并设置 name 属性的值为&quot;obj&quot;。所以但调用该对象的 func 方法的时候，方法中的 this 就表示 obj 这个对象。</p> <div class="language- extra-class"><pre class="language-text"><code>var obj = {
+    name: &quot;obj&quot;,
+    func: function () {
+        console.log(this + &quot;:&quot; + this.name);
+    }
+};
+
+obj.func();
+// [object Object]:obj
+</code></pre></div><p>为了验证&quot;方法中的 this 代表方法所属的对象&quot;这句话，再看下面一个例子。</p> <p>在对象 obj 中，创建了一个内嵌对象 nestedObj，当调用内嵌对象的方法的时候，方法中的 this 就代表 nestedObj。</p> <div class="language- extra-class"><pre class="language-text"><code>var obj = {
+    name: &quot;obj&quot;,
+    nestedObj: {
+        name:&quot;nestedObj&quot;,
+        func: function () {
+            console.log(this + &quot;:&quot; + this.name);
+        }
+    }
+}
+
+obj.nestedObj.func();
+// [object Object]:nestedObj
+</code></pre></div><p>对于上面例子中的方法，通常称为绑定方法，也就是说这些方法都是个特定的对象关联的。</p> <p>但是，当我们进行下面操作的时候，temp 将是一个全局作用里面的函数，并没有绑定到 obj 对象上。所以，temp 中的 this 表示的是 window 对象。</p> <div class="language- extra-class"><pre class="language-text"><code>var name = &quot;Will&quot;;
+var obj = {
+    name: &quot;obj&quot;,
+    func: function () {
+        console.log(this + &quot;:&quot; + this.name);
+    }
+};
+
+temp = obj.func;
+temp();
+//  [object Window]:Will
+</code></pre></div><h3 id="invoke-function-as-constructor"><a href="#invoke-function-as-constructor" class="header-anchor">#</a> Invoke function as Constructor</h3> <p>在 JavaScript 中，函数可以作为构造器来直接创建对象，在这种情况下，this 就代表了新建的对象。</p> <div class="language- extra-class"><pre class="language-text"><code>function Staff(name, age){
+    this.name = name;
+    this.age = age;
+    this.getInfo = function(){
+        console.log(this.name + &quot; is &quot; + this.age + &quot; years old&quot;);
+    };
+}
+
+var will = new Staff(&quot;Will&quot;, 28);
+will.getInfo();
+// Will is 28 years old
+</code></pre></div><h3 id="invoke-context-less-function"><a href="#invoke-context-less-function" class="header-anchor">#</a> Invoke context-less function</h3> <p>对于有些没有上下文的函数，也就是说这些函数没有绑定到特定的对象上，那么这些上下文无关的函数将会被默认的绑定到 global object 上。</p> <p>在这个例子中，函数 f 和匿名函数表达式在被调用的过程中并没有被关联到任何对象，所以他们的 this 都代表 global object。</p> <div class="language- extra-class"><pre class="language-text"><code>var context = &quot;global&quot;;
+
+var obj = {
+    context: &quot;object&quot;,
+    method: function () {
+        console.log(this + &quot;:&quot; +this.context);
+
+        function f() {
+            var context = &quot;function&quot;;
+            console.log(this + &quot;:&quot; +this.context);
+        };
+        f();
+
+        (function(){
+            var context = &quot;function&quot;;
+            console.log(this + &quot;:&quot; +this.context);
+        })();
+    }
+};
+
+obj.method();
+// [object Object]:object
+// [object Window]:global
+// [object Window]:global
+</code></pre></div><h2 id="call-apply-bind-改变-this"><a href="#call-apply-bind-改变-this" class="header-anchor">#</a> call/apply/bind 改变 this</h2> <p>this 本身是不可变的，但是 JavaScript 中提供了 call/apply/bind 三个函数来在函数调用时设置 this 的值。</p> <p>这三个函数的原型如下：</p> <ul><li>fun.apply(obj1 [, argsArray])
+<ul><li>Sets obj1 as the value of this inside fun() and calls fun() passing elements of argsArray as its arguments.</li></ul></li> <li>fun.call(obj1 [, arg1 [, arg2 [,arg3 [, ...]]]])
+<ul><li>Sets obj1 as the value of this inside fun() and calls fun() passing arg1, arg2, arg3, ... as its arguments.</li></ul></li> <li>fun.bind(obj1 [, arg1 [, arg2 [,arg3 [, ...]]]])
+<ul><li>Returns the reference to the function fun with this inside fun() bound to obj1 and parameters of fun bound to the parameters specified arg1, arg2, arg3, ....</li></ul></li></ul> <p>下面看一个简单的例子：</p> <div class="language- extra-class"><pre class="language-text"><code>function add(numA, numB){
+    console.log( this.original + numA + numB);
+}
+
+add(1, 2);
+
+var obj = {original: 10};
+add.apply(obj, [1, 2]);
+add.call(obj, 1, 2);
+
+var f1 = add.bind(obj);
+f1(2, 3);
+
+var f2 = add.bind(obj, 2);
+f2(3);
+// NaN
+// 13
+// 13
+// 15
+// 15
+</code></pre></div><p>当直接调用 add 函数的时候，this 将代表 window，当执行&quot;this.original&quot;的时候，由于 window 对象并没有&quot;original&quot;属性，所以会得到&quot;undefined&quot;。</p> <p>通过 call/apply/bind，达到的效果就是把 add 函数绑定到了 obj 对象上，当调用 add 的时候，this 就代表了 obj 这个对象。</p> <h2 id="dom-event-handler"><a href="#dom-event-handler" class="header-anchor">#</a> DOM event handler</h2> <p>当一个函数被当作 event handler 的时候，this 会被设置为触发事件的页面元素（element）。</p> <div class="language- extra-class"><pre class="language-text"><code>var body = document.getElementsByTagName(&quot;body&quot;)[0];
+body.addEventListener(&quot;click&quot;, function(){
+    console.log(this);
+});
+// &lt;body&gt;…&lt;/body&gt;
+</code></pre></div><h3 id="in-line-event-handler"><a href="#in-line-event-handler" class="header-anchor">#</a> In-line event handler</h3> <p>当代码通过 in-line handler 执行的时候，this 同样指向拥有该 handler 的页面元素。</p> <p>看下面的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>document.write('&lt;button onclick=&quot;console.log(this)&quot;&gt;Show this&lt;/button&gt;');
+// &lt;button onclick=&quot;console.log(this)&quot;&gt;Show this&lt;/button&gt;
+document.write('&lt;button onclick=&quot;(function(){console.log(this);})()&quot;&gt;Show this&lt;/button&gt;');
+// window
+</code></pre></div><p>在第一行代码中，正如上面 in-line handler 所描述的，this 将指向&quot;button&quot;这个 element。但是，对于第二行代码中的匿名函数，是一个上下文无关（context-less）的函数，所以 this 会被默认的设置为 window。</p> <p>前面我们已经介绍过了 bind 函数，所以，通过下面的修改就能改变上面例子中第二行代码的行为：</p> <div class="language- extra-class"><pre class="language-text"><code>document.write('&lt;button onclick=&quot;((function(){console.log(this);}).bind(this))()&quot;&gt;Show this&lt;/button&gt;');
+// &lt;button onclick=&quot;((function(){console.log(this);}).bind(this))()&quot;&gt;Show this&lt;/button&gt;
+</code></pre></div><h2 id="保存-this"><a href="#保存-this" class="header-anchor">#</a> 保存 this</h2> <p>在 JavaScript 代码中，同一个上下文中可能会出现多个 this，为了使用外层的 this，就需要对 this 进行暂存了。</p> <p>看下面的例子，根据前面的介绍，在 body 元素的 click handler 中，this 肯定是指向 body 这个元素，所以为了使用&quot;greeting&quot;这个方法，就是要对指向 bar 对象的 this 进行暂存，这里用了一个 self 变量。</p> <p>有了 self，我们就可以在 click handler 中使用 bar 对象的&quot;greeting&quot;方法了。</p> <p>当阅读一些 JavaScript 库代码的时候，如果遇到类似 self，me，that 的时候，他们可能就是对 this 的暂存。</p> <div class="language- extra-class"><pre class="language-text"><code>var bar = {
+    name: &quot;bar&quot;,
+    body: document.getElementsByTagName(&quot;body&quot;)[0],
+
+    greeting: function(){
+        console.log(&quot;Hi there, I'm &quot; + this + &quot;:&quot; + this.name);
+    },
+
+    anotherMethod: function () {
+        var self = this;
+        this.body.addEventListener(&quot;click&quot;, function(){
+            self.greeting();
+        });
+    }
+};
+
+bar.anotherMethod();
+// Hi there, I'm [object Object]:bar
+</code></pre></div><p>同样，对于上面的例子，也可以使用 bind 来设置 this 达到相同的效果。</p> <div class="language- extra-class"><pre class="language-text"><code>var bar = {
+    name: &quot;bar&quot;,
+    body: document.getElementsByTagName(&quot;body&quot;)[0],
+
+    greeting: function(){
+        console.log(&quot;Hi there, I'm &quot; + this + &quot;:&quot; + this.name);
+    },
+
+    anotherMethod: function () {
+        this.body.addEventListener(&quot;click&quot;, (function(){
+            this.greeting();
+        }).bind(this));
+    }
+};
+
+bar.anotherMethod();
+// Hi there, I'm [object Object]:bar
+</code></pre></div><h2 id="总结-3"><a href="#总结-3" class="header-anchor">#</a> 总结</h2> <p>本文介绍了执行上下文中的 this 属性，this 的值直接影响着代码的运行结果。</p> <p>在函数调用中，this 是由激活上下文代码的调用者（caller）来提供的，即调用函数的父上下文(parent context )，也就是说 this 取决于调用函数的方式，指向调用时所在函数所绑定的对象。</p> <p>通过上面的介绍，相信对 this 有了一定的认识。</p> <h2 id="自己的话总体总结"><a href="#自己的话总体总结" class="header-anchor">#</a> 自己的话总体总结</h2> <ul><li><p>执行上下文 Execution context 自己的理解就是作用域对象 ：全局作用域 和 局部作用域</p> <ul><li>包含的重要属性：
+<ul><li>变量对象（Variable object，VO）</li> <li>作用域链（Scope chain）</li> <li>this</li></ul></li> <li>创建阶段（当函数被调用，但是开始执行函数内部代码之前）
+<ul><li>创建 Scope chain</li> <li>创建 VO/AO（variables, functions and arguments）
+<ul><li>扫描函数内部代码，查找函数声明（Function declaration）</li> <li>扫描函数内部代码，查找变量声明（Variable declaration）包含 函数的形参</li></ul></li> <li>设置 this 的值</li></ul></li> <li>激活/代码执行阶段
+<ul><li>设置变量的值、函数的引用，然后解释/执行代码</li></ul></li></ul></li> <li><p>作用域链 scope chain 就是当前作用域的 VO/AO 没有的变量，就向上查找 VO/AO 一直到全局作用域 Global scope 的 VO</p></li> <li><p>闭包 是作用域链的应用 ：当有下级作用域使用当前作用域内的变量 ，当前作用域执行结束后变量不会被销毁</p></li> <li><p>this 是 当前执行上下文被哪个执行上下文调用 谁调用就指向谁</p> <ul><li>函数直接调用 fn() 指向 全局对象 global 浏览器中是 window</li> <li>对象调用 obj.fn() 哪个对象调用指向就指向谁</li> <li>dom 事件 onclick = fn 指向对应的 dom</li> <li>构造函数 new Fn() 指向实例对象</li> <li>call,bind,apply, fn.call(obj) 第一个参数是谁就指向谁</li></ul></li></ul> <h1 id="javascript-中的函数表达式"><a href="#javascript-中的函数表达式" class="header-anchor">#</a> JavaScript 中的函数表达式</h1></div></section> <footer class="page-edit"><!----> <!----></footer> <!----> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:0;" data-v-b57cc07c data-v-7dd95ae2></ul></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="./assets/js/app.00271e18.js" defer></script><script src="./assets/js/3.e025ddc1.js" defer></script><script src="./assets/js/1.8c84e2ea.js" defer></script><script src="./assets/js/13.f663f57b.js" defer></script>
+  </body>
+</html>
